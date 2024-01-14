@@ -1,55 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, signal } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
-import { stanovi } from './stanovi'
+import { IStan, stanovi } from './stanovi'
 import { Meta, Title } from "@angular/platform-browser";
-
-const generateWebsiteMeta = (sprat: string, stan: string) => {
-  const room = stanovi[sprat][stan];
-  if (!room) {
-    return {}
-  }
-
-  const roomSizes = room.kvadrature;
-
-  // Calculate total area
-  const totalArea = roomSizes.find((room: any) => room.name === 'UKUPNE POVRSINE')?.size || 0;
-
-  const roomNum = room.brojSoba;
-
-  const soban = {
-    '1': 'Jednosoban',
-    '2': 'Dvosoban',
-    '3': 'Trosoban',
-    '4': 'Cetvorosoban',
-  }[roomNum];
-
-  const spratu = {
-    'suteren': 'suterenu',
-    'prizemlje': 'prizemlju',
-    '1': 'prvom spratu',
-    '2': 'drugom spratu',
-    '3': 'trecem spratu',
-  }[sprat];
-
-  // Generate individual room descriptions
-  const roomDescriptions = roomSizes
-    .filter((room: any) => room.size !== null)
-    .map((room: any) => `${room.name}: ${room.size} m²`)
-    .join(', ');
-
-  const title = sprat === 'suteren' ?
-    `Garaza ${stan} u ${spratu} sa površinom od ${totalArea.toFixed(2)} m²` :
-    `${soban} stan na ${spratu} sa ukupnom površinom od ${totalArea.toFixed(2)} m²`
-  const metaDescription = `${title}. ${
-    roomDescriptions.length > 0 ? `Prostorije: ${roomDescriptions}.` : ''
-  }`;
-
-  return {
-    title,
-    metaDescription
-  };
-}
 
 @Component({
   selector: "app-stan-page",
@@ -79,11 +32,20 @@ export class StanComponent {
   details = computed(() => {
     let { stan, sprat } = this.stan()
     sprat = (sprat as string).toLowerCase() === 'p' ? 'prizemlje' : sprat
-    const { title, metaDescription } = generateWebsiteMeta(sprat, stan)
+    const { title, description } = this.generateWebsiteMeta(sprat, stan)
     const pageTitle = title ?? 'Ciglana Park View';
+    const pageDescription = description ?? 'Ciglana Park View';
     this.title.setTitle(pageTitle);
     this.meta.addTag({ name: 'title', content: 'Ciglana Park View | ' + pageTitle });
-    this.meta.addTag({ name: 'description', content: pageTitle });
+    this.meta.addTag({ name: 'description', content: pageDescription });
+    this.meta.addTag({ name: 'og:title', content: pageTitle });
+    this.meta.addTag({ name: 'og:description', content: pageDescription });
+    this.meta.addTag({ name: 'og:url', content: 'https://aludinstyle.com/parkview/' });
+    this.meta.addTag({ name: 'twitter:title', content: pageTitle });
+    this.meta.addTag({ name: 'twitter:description', content: pageDescription });
+    this.meta.addTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.meta.addTag({ name: 'twitter:url', content: 'https://aludinstyle.com/parkview/' });
+
 
     const info = stanovi[sprat].find((s: any) => s.stan === stan)
     const ignoreSums = ['SAMO STAN', 'UKUPNE POVRSINE']
@@ -110,5 +72,55 @@ export class StanComponent {
     this.activeRoute.params.subscribe((params: any) => {
       this.stan.set(params)
     })
+  }
+
+  generateWebsiteMeta(sprat: string, stan: string) {
+    const level = stanovi[sprat];
+    if (!level) {
+      return {}
+    }
+
+    const room = level.find((s: any) => s.stan === stan) as IStan;
+  
+    const roomSizes = room.kvadrature;
+  
+    // Calculate total area
+    const totalArea = room.povrsina.ukupno || 0;
+  
+    const roomNum = room.brojSoba;
+  
+    const soban = {
+      '1': 'Jednosoban',
+      '2': 'Dvosoban',
+      '3': 'Trosoban',
+      '4': 'Cetvorosoban',
+    }[roomNum];
+  
+    const spratu = {
+      'suteren': 'suterenu',
+      'prizemlje': 'prizemlju',
+      '1': 'prvom spratu',
+      '2': 'drugom spratu',
+      '3': 'trecem spratu',
+    }[sprat];
+  
+    // Generate individual room descriptions
+    const roomDescriptions = roomSizes
+      .filter((room: any) => room.size !== null)
+      .map((room: any) => `${room.name}: ${room.size} m²`)
+      .join(', ');
+
+    const title = sprat === 'suteren' ?
+      `Garaza ${stan} u ${spratu} sa površinom od ${totalArea.toFixed(2)} m²` :
+      `${soban} stan na ${spratu} sa ukupnom površinom od ${totalArea.toFixed(2)} m²`;
+
+    const description = `${title}. ${
+      roomDescriptions.length > 0 ? `Prostorije: ${roomDescriptions}.` : ''
+    }`;
+  
+    return {
+      title,
+      description
+    };
   }
 }
