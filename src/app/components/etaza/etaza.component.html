@@ -1,0 +1,34 @@
+<table [cellSpacing]="0">
+  <thead>
+    <tr *ngIf="!noTitle">
+      <td colspan="4" class="etaza-title"><h2>ETAŽA: {{spratLabel$()}}</h2></td>
+    </tr>
+
+    <tr>
+      <th class="name">{{type() | titlecase}}</th>
+      <th class="velicina">
+        <span *ngIf="type() === 'stan'">Velicina</span>
+      </th>
+      <th class="povrsina">Kvadratura [m<sup>2</sup>]</th>
+      <th class="stanje">Stanje</th>
+    </tr>
+  </thead>
+</table>
+@for(stan of stanovi$(); track stan.name) {
+  <a [routerLink]="['/stanovi', 'sprat', sprat$(), 'stan', stan.stan]">
+  <table [cellSpacing]="0" class="stanovi">
+    <tbody>
+        <tr [ngClass]="[stan.stanje]">
+          <td class="name">{{stan.name}}</td>
+          <td class="velicina">{{soban[stan.brojSoba]}}</td>
+          <td class="povrsina">
+            {{stan.povrsina.stan + stan.povrsina.terasa + stan.povrsina.lodja | number:'1.0-2'}}
+          </td>
+          <td class="stanje">
+            <span>{{stan.stanje}}</span>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+  </a>
+}

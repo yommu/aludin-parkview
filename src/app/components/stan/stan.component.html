@@ -1,0 +1,65 @@
+<h2 class="top page-title">
+  <div class="subtitle breadcrumb">
+    <a routerLink="/">Pocetna</a>
+    <span>/</span>
+    <a routerLink="/stanovi">Stanovi</a>
+    <span>/</span>
+    <a [routerLink]="['/stanovi', 'sprat', stan().sprat]">{{stan().sprat | titlecase}}</a>
+    <span>/</span>
+    <span>{{type() | titlecase}} {{details().info?.name}}</span>
+  </div>
+  <span>{{details().title}}</span>
+</h2>
+
+<div class="divider horizontal"></div>
+
+<div class="text-block-container">
+  <div class="text-block">
+    <img [src]="details().img" alt="" />
+    <div>
+      <div class="stan-title">
+        <h2 class="page-title">
+          <span class="subtitle">Kvadratura prostorija</span>
+          {{type() | titlecase}} {{details().info?.name}}
+        </h2>
+        <div class="status" [ngClass]="[details().info?.stanje]">
+          Status
+          <span>{{details().info?.stanje}}</span>
+        </div>
+      </div>
+      <table class="table" [cellPadding]="0" [cellSpacing]="0">
+        <thead>
+          <tr>
+            <th scope="col">Prostorija</th>
+            <th scope="col" style="text-align: right;">Površina [m<sup>2</sup>]</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (room of details().info?.kvadrature; track room.name) {
+            <tr [attr.data-name]="room.name">
+              <td>{{room.name}}</td>
+              <td class="size">{{room.size | number:'1.0-2'}} m<sup>2</sup></td>
+            </tr>
+          }
+          <tr>
+            <td><strong>Samo {{type()}}</strong></td>
+            <td class="size"><strong>{{details()?.povrsina?.stan | number:'1.0-2'}} m<sup>2</sup></strong></td>
+          </tr>
+          <tr>
+            <td><strong>Ukupna površina</strong></td>
+            <td class="size"><strong>{{details()?.povrsina?.ukupno | number:'1.0-2'}} m<sup>2</sup></strong></td>
+          </tr>
+          <tr class="napalativa-info">
+            <td colspan="2">
+              <div class="napalativa-info-label">
+                <strong>Naplativa površina</strong>
+                <strong>{{napalativa() | number:'1.0-2'}} m<sup>2</sup></strong>
+              </div>
+              <span *ngIf="type() === 'stan'">Stan + lođa*0.75 + tarasa*0.5</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,162 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Poppins:ital,wght@0,100;0,300;0,700;1,100;1,300;1,700&family=Roboto+Flex:opsz,wght@8..144,100;8..144,400;8..144,700&display=swap');
+
+@media (max-width: 600px) {
+  html, body {
+    font-size: 14px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media print {
+  *[no-print] {
+    display: none;
+  }
+}
+
+body {
+  font-family: 'Roboto Flex';
+  margin: 0;
+  padding: 0;
+  color: #444444;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 100;
+  text-align: center;
+  font-style: italic;
+}
+
+.map-container {
+  max-width: 100%;
+  overflow-x: hidden;
+
+  svg {
+    transform-origin: left top;
+
+    path {
+      opacity: 0.1;
+      transition: all 0.3s ease-in-out;
+      fill: #0f0;
+      &:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
+
+      &.active {
+        opacity: 1;
+        fill: #00f;
+      }
+    }
+  }
+}
+
+.text-block-container {
+  display: flex;
+  flex-direction: column;
+  width: 1200px;
+  max-width: 100%;
+  margin: 0 auto;
+
+  // Two columns in grid with same size
+  .text-block {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    font-family: 'Poppins', sans-serif;
+
+    @media (max-width: 600px) {
+      display: flex;
+      flex-direction: column;
+      padding: 8px;
+      margin-bottom: 8px;
+
+      &.left {
+        flex-direction: column-reverse;
+      }
+
+      > div {
+        padding: 8px 0!important;
+        h2, p {
+          text-align: center!important;
+        }
+
+        h2 {
+          font-size: 1.5rem;
+          padding: 0 16px;
+        }
+
+        p {
+          padding: 0 16px;
+          margin: 0;
+        }
+      }
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 100;
+      font-style: italic;
+      margin: 0;
+    }
+
+    > div {
+      padding: 4px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &.left {
+      > div {
+        h2, p {
+          text-align: right;
+        }
+      }
+    }
+
+    &.right {
+      > div {
+        h2, p {
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+.page-title {
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 100;
+  font-size: 34px;
+  width: 1200px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+
+  .subtitle {
+    font-size: 16px;
+    color: #999;
+    font-family: 'Roboto Flex';
+  }
+}
+
+.breadcrumb {
+  display: flex;
+  gap: 8px;
+  a {
+    color: #999;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+.tabs {
+  display: flex;
+  padding: 32px;
+  margin: 0 auto;
+  max-width: 1200px;
+
+  // Vertical tabs
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 250px;
+    border-right: 1px solid #444;
+
+    a {
+      padding: 8px 16px;
+      background-color: #444;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 100;
+      font-size: 1.2rem;
+      text-align: left;
+      transition: all 0.3s ease-in-out;
+      border-radius: 4px 0 0 4px;
+      width: calc(100% + 1px);
+      border: 1px solid transparent;
+
+      &:hover {
+        background-color: #666;
+      }
+      &.active {
+        background-color: #fff;
+        color: #444;
+        border-top: 1px solid #444;
+        border-bottom: 1px solid #444;
+        border-left: 1px solid #444;
+      }
+    }
+  }
+}
+.map-container {
+  position: relative;
+  max-width: 1200px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+h2 {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+  border-bottom: 1px solid #eee;
+}

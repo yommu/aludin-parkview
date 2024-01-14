@@ -1,0 +1,36 @@
+<h1 no-print>Ponuda stanova</h1>
+<p>Otkrijte svoj savršen dom u srcu Slavinovica! Naša nova stambena zgrada nudi 16 jedinstvenih stanova raspoređenih na 4 kata, s modernim liftom za vašu praktičnost. Svaki stan odražava pažljiv dizajn, vrhunske materijale i prostranost. Pogledajte našu ponudu i pronađite dom koji odgovara vašem životnom stilu. Alu Din Styl - gdje elegancija susreće udobnost.</p>
+@for (sprat of stanoviKeys; track sprat; let first = $first) {
+  <table [cellSpacing]="0" [ngClass]="{'etazaTopMargin': !first}">
+    <thead>
+      <tr>
+        <td colspan="4"><h2>ETAŽA: {{spratMap[sprat]}}</h2></td>
+      </tr>
+
+      <tr>
+        <th class="name">Stan</th>
+        <th class="velicina">Velicina</th>
+        <th class="povrsina">Kvadratura [m<sup>2</sup>]</th>
+        <th class="stanje">Stanje</th>
+      </tr>
+    </thead>
+  </table>
+  @for(stan of stanovi()[sprat]; track stan.name) {
+    <a [routerLink]="['/stanovi', 'sprat', sprat, 'stan', stan.stan]">
+    <table [cellSpacing]="0" class="stanovi">
+      <tbody>
+          <tr [ngClass]="[stan.stanje]">
+            <td class="name">{{stan.name}}</td>
+            <td class="velicina">{{soban[stan.brojSoba]}}</td>
+            <td class="povrsina">
+              {{stan.povrsina.stan + stan.povrsina.terasa + stan.povrsina.lodja | number:'1.0-2'}}
+            </td>
+            <td class="stanje">
+              <span>{{stan.stanje}}</span>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+    </a>
+  }
+}

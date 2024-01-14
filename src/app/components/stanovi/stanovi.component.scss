@@ -1,0 +1,158 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  margin: 0 auto 32px auto;
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+p {
+  font-size: 16px;
+  color: #999;
+  font-family: "Roboto Flex";
+  font-style: italic;
+  line-height: 20px;
+}
+
+h2 {
+  margin: 0;
+  text-align: left;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+table {
+  width: 100%;
+
+  &.etazaTopMargin {
+    margin-top: 32px;
+  }
+
+  th {
+    background-color: #eee;
+    text-align: left;
+  }
+
+  thead {
+    th {
+      padding: 8px;
+      border-bottom: 4px solid #fff;
+    }
+  }
+
+  tbody {
+    tr {
+      position: relative;
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 2px;
+        height: 100%;
+        transition: width 0.4s ease-in-out;
+      }
+
+      &:hover {
+        td {
+          background-color: rgba(0, 0, 0, 0.05);
+          cursor: pointer;
+        }
+        &::after {
+          background-color: rgba(0, 0, 0, 0.05);
+          width: 10px;
+        } 
+      }
+
+      td.stanje {
+        span {
+          background-color: #ccc;
+          padding: 2px 12px;
+          border-radius: 12px;
+          color: #fff;
+          font-size: 0.8em;
+          text-transform: capitalize;
+        }
+      }
+
+      &.slobodan {
+        td.stanje span {
+          background-color: #4caf50;
+        }
+        &:after {
+          background-color: #4caf50;
+        }
+      }
+
+      &.prodat {
+        td.stanje span {
+          background-color: #f44336;
+        }
+        &:after {
+          background-color: #f44336;
+        }
+      }
+
+      &.rezervisan {
+        td.stanje span {
+          background-color: #ff9800;
+        }
+        &:after {
+          background-color: #ff9800;
+        }
+      }
+    }
+  }
+
+  td {
+    padding: 8px 0 8px 8px;
+    &:last-child {
+      padding-right: 8px;
+    }
+    border-bottom: 1px solid #eee;
+  }
+
+  td.name {
+    width: 64px;
+    padding-left: 16px;
+    box-sizing: border-box;
+  }
+}
+
+td.stanje,
+th.stanje {
+  width: 100px;
+}
+
+th.name {
+  width: 64px;
+}
+
+td.povrsina,
+th.povrsina {
+  width: 160px;
+
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.9em;
+  }
+}
+
+.divider {
+  margin-bottom: 32px;
+}

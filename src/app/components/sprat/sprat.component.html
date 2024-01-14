@@ -1,0 +1,24 @@
+<h2 class="top page-title">
+  <div class="subtitle breadcrumb">
+    <a routerLink="/">Pocetna</a>
+    <span>/</span>
+    <a routerLink="/stanovi">Stanovi</a>
+    <span>/</span>
+    <span>{{options.sprat | titlecase}}</span>
+  </div>
+  Stanovi u ponudi - Etaza: {{options.title | titlecase}}
+</h2>
+
+<div class="tabs">
+  <div class="left">
+    <a routerLink="/stanovi/sprat/suteren" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Suteren (Garaze)</a>
+    <a routerLink="/stanovi/sprat/prizemlje" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Prizemlje</a>
+    <a routerLink="/stanovi/sprat/1" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Prvi sprat</a>
+    <a routerLink="/stanovi/sprat/2" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Drugi sprat</a>
+    <a routerLink="/stanovi/sprat/3" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Treci sprat</a>
+  </div>
+  <div class="map-container" #mapContainer>
+    <app-stanovi-etaza [sprat]="options.sprat" [noTitle]="true" />
+    <div [innerHTML]="svgHtml" #svgContainer></div>
+  </div>
+</div>
