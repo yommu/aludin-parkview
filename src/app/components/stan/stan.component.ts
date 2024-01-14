@@ -33,7 +33,7 @@ export class StanComponent {
     let { stan, sprat } = this.stan()
     sprat = (sprat as string).toLowerCase() === 'p' ? 'prizemlje' : sprat
     const { title, description } = this.generateWebsiteMeta(sprat, stan)
-    const pageTitle = title ?? 'Ciglana Park View';
+    const pageTitle = 'Ciglana Park View | ' + (title ?? 'Ciglana Park View');
     const pageDescription = description ?? 'Ciglana Park View';
     this.title.setTitle(pageTitle);
     this.meta.addTag({ name: 'title', content: 'Ciglana Park View | ' + pageTitle });

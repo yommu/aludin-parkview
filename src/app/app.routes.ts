@@ -11,10 +11,10 @@ export const routes: Routes = [{
   loadComponent: () => import('./components/sprat/sprat.component').then(m => m.SpratComponent)
 }, {
   path: 'stanovi/sprat',
-  loadComponent: () => import('./components/sprat/sprat.component').then(m => m.SpratComponent)
+  redirectTo: 'stanovi/sprat/prizemlje',
 }, {
   path: 'stanovi',
-  loadComponent: () => import('./components/sprat/sprat.component').then(m => m.SpratComponent)
+  redirectTo: 'stanovi/sprat/prizemlje',
 }, {
   path: 'lokacija',
   loadComponent: () => import('./components/lokacija.component').then(m => m.LokacijaComponent)

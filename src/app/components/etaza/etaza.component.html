@@ -6,9 +6,11 @@
 
     <tr>
       <th class="name">{{type() | titlecase}}</th>
-      <th class="velicina">
-        <span *ngIf="type() === 'stan'">Velicina</span>
-      </th>
+      @if (!showSmallTable) {
+        <th class="velicina">
+          <span *ngIf="type() === 'stan'">Velicina</span>
+        </th>
+      }
       <th class="povrsina">Kvadratura [m<sup>2</sup>]</th>
       <th class="stanje">Stanje</th>
     </tr>
@@ -20,10 +22,17 @@
     <tbody>
         <tr [ngClass]="[stan.stanje]">
           <td class="name">{{stan.name}}</td>
-          <td class="velicina">{{soban[stan.brojSoba]}}</td>
-          <td class="povrsina">
-            {{stan.povrsina.stan + stan.povrsina.terasa + stan.povrsina.lodja | number:'1.0-2'}}
-          </td>
+          @if (showSmallTable) {
+            <td class="povrsina">
+              {{soban[stan.brojSoba]}} <br *ngIf="soban[stan.brojSoba]" />
+              {{stan.povrsina.stan + stan.povrsina.terasa + stan.povrsina.lodja | number:'1.0-2'}} m<sup>2</sup>
+            </td>
+          } @else {
+            <td class="velicina">{{soban[stan.brojSoba]}}</td>
+            <td class="povrsina">
+              {{stan.povrsina.stan + stan.povrsina.terasa + stan.povrsina.lodja | number:'1.0-2'}}
+            </td>
+          }
           <td class="stanje">
             <span>{{stan.stanje}}</span>
           </td>

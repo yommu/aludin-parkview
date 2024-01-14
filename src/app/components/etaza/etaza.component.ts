@@ -1,4 +1,4 @@
-import { Component, Input, computed } from '@angular/core';
+import { Component, HostListener, Input, computed } from '@angular/core';
 import { IStan, stanovi } from '../stan/stanovi';
 import { signal } from '@angular/core'
 import { CommonModule } from '@angular/common';
@@ -27,6 +27,8 @@ export class EtazaStanoviComponent {
     this.sprat$.set(value);
   }
 
+  showSmallTable = false
+
   @Input()
   noTitle = false;
 
@@ -47,4 +49,14 @@ export class EtazaStanoviComponent {
   }
 
   soban = soban;
+
+  constructor() {
+    window['etaza'] = this
+    this.onResize(null)
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.showSmallTable = window.innerWidth < 768
+  }
 }
