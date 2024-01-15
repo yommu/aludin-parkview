@@ -14,7 +14,7 @@
   flex-wrap: wrap;
 
   // medial on mobile and size
-  @media (max-width: 600px) {
+  @media (max-width: 900px) {
     justify-content: center;
     flex-direction: column;
     padding: 0 16px;

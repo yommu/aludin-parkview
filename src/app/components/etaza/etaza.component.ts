@@ -51,12 +51,11 @@ export class EtazaStanoviComponent {
   soban = soban;
 
   constructor() {
-    window['etaza'] = this
     this.onResize(null)
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.showSmallTable = window.innerWidth < 768
+    this.showSmallTable = window?.innerWidth < 768
   }
 }

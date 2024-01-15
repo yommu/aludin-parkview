@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: "app-home-page",
@@ -12,4 +13,8 @@ import { Component } from "@angular/core";
 })
 export class HomeComponent {
   sprat = "prizemlje-prvi-sprat";
+  
+  constructor() {
+    inject(Title).setTitle('Alu Din Styl d.o.o. | Ciglana Park View: Vas Novi Dom');
+  }
 }

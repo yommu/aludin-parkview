@@ -68,7 +68,7 @@ h1 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     font-family: 'Poppins', sans-serif;
 
-    @media (max-width: 600px) {
+    @media (max-width: 900px) {
       display: flex;
       flex-direction: column;
       padding: 8px;

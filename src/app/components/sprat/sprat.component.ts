@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, NgZone, PLATFORM_ID, ViewChild, effect, inject, signal } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
+import { SafeHtml, Title } from '@angular/platform-browser';
 import { Subject, fromEvent, takeUntil, take, filter, map } from 'rxjs';
 import { AppService } from '../../app.service';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
@@ -55,6 +55,7 @@ const spratNameToParams: {
 export class SpratComponent {
   destroyed = new Subject<void>()
   platformId = inject(PLATFORM_ID)
+  title = inject(Title)
 
   @ViewChild('svgContainer', { static: true })
   set svgContainer(value: ElementRef<HTMLDivElement>) {
@@ -78,12 +79,6 @@ export class SpratComponent {
   svgHtml: SafeHtml = ''
   width: number = 0
   height: number = 0
-
-  @Input()
-  set sprat(sprat: string) {
-    this.options = spratNameToParams[sprat as any]
-    this.loadSvg(this.options.id)
-  }
 
   options: {
     title: string,
@@ -162,6 +157,7 @@ export class SpratComponent {
       const sprat = params['sprat'] || 'prizemlje'
       this.options = spratNameToParams[sprat as any]
       this.loadSvg(this.options.id)
+      this.title.setTitle('Alu Din Styl d.o.o. | Ciglana Park View: Vas Novi Dom');
     })
   }
 

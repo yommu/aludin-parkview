@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostBinding, computed, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostBinding, HostListener, computed, inject, signal } from '@angular/core';
 import { PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
@@ -33,7 +33,7 @@ declare var particlesJS: any;
   </div>
 
   <menu>
-    <div class="hamburger" (click)="toggleMenu()">
+    <div class="hamburger">
       <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24" fill="none">
         <path d="M4 18L20 18" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
         <path d="M4 12L20 12" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
@@ -60,14 +60,14 @@ declare var particlesJS: any;
   ]
 })
 export class HeaderComponent implements AfterViewInit {
-  elRef = inject(ElementRef)
+  elRef = inject(ElementRef<HTMLDivElement>)
   platformId = inject(PLATFORM_ID)
   router = inject(Router)
 
   readonly isMenuOpen$ = signal(false)
 
   readonly openMenu = computed(() => {
-    return this.isMenuOpen$() || window.innerWidth > 768
+    return this.isMenuOpen$() || window?.innerWidth > 900
   })
 
   toggleMenu() {
@@ -87,5 +87,12 @@ export class HeaderComponent implements AfterViewInit {
         this.isMenuOpen$.set(false)
       });
     }
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: PointerEvent) {
+    const menuEl: any = this.elRef.nativeElement?.querySelector('menu');
+    const clickedInside: boolean = menuEl.contains(event.target);
+    this.isMenuOpen$.set(clickedInside && !this.isMenuOpen$())
   }
 }
