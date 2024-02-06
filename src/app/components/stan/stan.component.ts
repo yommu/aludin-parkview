@@ -50,7 +50,7 @@ export class StanComponent {
     const info = stanovi[sprat].find((s: any) => s.stan === stan)
     const ignoreSums = ['SAMO STAN', 'UKUPNE POVRSINE']
 
-    const ext = ['prizemlje', '1'].includes(sprat) ? 'svg' : 'jpg'
+    const ext = ['prizemlje', '1', '3'].includes(sprat) ? 'svg' : 'jpg'
 
     return {
       img: `assets/stanovi/${sprat}/${stan}/Stan ${stan}.${ext}`,
