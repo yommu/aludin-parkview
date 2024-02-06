@@ -52,8 +52,10 @@ export class StanComponent {
 
     const ext = ['prizemlje', '1', '3'].includes(sprat) ? 'svg' : 'jpg'
 
+    const img = `assets/stanovi/${sprat}/${stan}/` + (info?.img || `Stan ${stan}.${ext}`)
+
     return {
-      img: `assets/stanovi/${sprat}/${stan}/Stan ${stan}.${ext}`,
+      img,
       povrsina: info?.povrsina,
       info: {
         ...(info || {}),

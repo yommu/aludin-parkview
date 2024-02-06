@@ -10,6 +10,7 @@ export interface IStan {
   m2: number;
   stan: string;
   kvadrature: any[];
+  img?: string;
   povrsina: {
     stan: number;
     terasa: number;
