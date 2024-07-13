@@ -2,10 +2,20 @@ import { AfterViewInit, Component, ElementRef, HostBinding, HostListener, comput
 import { PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { InjectionToken } from '@angular/core';
 
 
 // define custom global variables here
 declare var particlesJS: any;
+
+export const WINDOW = new InjectionToken<Window>('WindowToken', {
+  factory: () => {
+    if(typeof window !== 'undefined') {
+      return window
+    }
+    return new Window()
+  }
+})
 
 @Component({
   selector: 'cpv-header',
@@ -57,17 +67,18 @@ declare var particlesJS: any;
     CommonModule,
     RouterLink,
     RouterLinkActive
-  ]
+  ],
 })
 export class HeaderComponent implements AfterViewInit {
   elRef = inject(ElementRef<HTMLDivElement>)
   platformId = inject(PLATFORM_ID)
   router = inject(Router)
+  window = inject(WINDOW)
 
   readonly isMenuOpen$ = signal(false)
 
   readonly openMenu = computed(() => {
-    return this.isMenuOpen$() || window?.innerWidth > 900
+    return this.isMenuOpen$() || this.window?.innerWidth > 900
   })
 
   toggleMenu() {
