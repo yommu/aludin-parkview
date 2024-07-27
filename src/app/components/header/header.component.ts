@@ -24,7 +24,7 @@ export const WINDOW = new InjectionToken<Window>('WindowToken', {
     <div class="header-bg1" id="header-bg1"></div>
     <div class="inner-header">
       <div class="header__left">
-        <img src="assets/Logo i Podloga.png" alt="logo" />
+        <img routerLink="/" src="assets/Logo i Podloga.png" alt="logo" style="cursor: pointer;" />
         <div class="header__left_bg"></div>
         <div class="header__left_text">
           <p style="font-size: 1.2rem; font-weight: 100; letter-spacing: 0.2rem">Stambeni Objekat</p>

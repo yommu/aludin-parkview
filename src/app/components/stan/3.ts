@@ -29,7 +29,7 @@ export const stanovi = [{
   stan: '2',
   brojSoba: 2,
   img: 'Stan 2.svg',
-  stanje: 'slobodan',
+  stanje: 'prodat',
   kvadrature: [
     { name: 'ULAZ', size: 3.27 },
     { name: 'OSTAVA', size: null },
@@ -46,9 +46,9 @@ export const stanovi = [{
     { name: 'SOBA 2', size: null },
     { name: 'SOBA 3', size: null },
     { name: 'LOĐA', size: null },
-    { name: 'TERASA', size: 17.47 },
+    { name: 'TERASA', size: 17.68 },
     { name: 'SAMO STAN', size: 51.71 },
-    { name: 'UKUPNE POVRSINE', size: 69.18 }
+    { name: 'UKUPNE POVRSINE', size: 69.39 }
   ]   
 }, {
   name: '3.3',
