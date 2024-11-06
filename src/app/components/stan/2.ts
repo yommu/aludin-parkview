@@ -52,7 +52,7 @@ export const stanovi = [{
   name: '2.3',
   stan: '3',
   brojSoba: 3,
-  stanje: 'rezervisan',
+  stanje: 'slobodan',
   kvadrature: [
     { name: 'ULAZ', size: 4.70 },
     { name: 'OSTAVA', size: null },
@@ -77,7 +77,7 @@ export const stanovi = [{
   name: '2.4',
   stan: '4',
   brojSoba: 2,
-  stanje: 'rezervisan',
+  stanje: 'slobodan',
   kvadrature: [
     { name: 'ULAZ', size: 3.00 },
     { name: 'OSTAVA', size: null },
