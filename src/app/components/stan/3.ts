@@ -54,7 +54,7 @@ export const stanovi = [{
   name: '3.3',
   stan: '3',
   brojSoba: 1,
-  img: 'Stan 3.png',
+  img: 'Stan 3.svg',
   stanje: 'prodat',
   kvadrature: [
     { name: 'ULAZ', size: 4.70 },
@@ -81,7 +81,7 @@ export const stanovi = [{
   stan: '4',
   brojSoba: 2,
   stanje: 'slobodan',
-  img: 'Stan 4.png',
+  img: 'Stan 4.svg',
   kvadrature: [
     { name: 'ULAZ', size: 3.00 },
     { name: 'OSTAVA', size: null },
