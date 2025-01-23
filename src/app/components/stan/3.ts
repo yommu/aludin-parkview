@@ -80,7 +80,7 @@ export const stanovi = [{
   name: '3.4',
   stan: '4',
   brojSoba: 2,
-  stanje: 'slobodan',
+  stanje: 'prodat',
   img: 'Stan 4.svg',
   kvadrature: [
     { name: 'ULAZ', size: 3.00 },
