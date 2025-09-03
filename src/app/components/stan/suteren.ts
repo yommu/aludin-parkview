@@ -1,7 +1,7 @@
 export const stanovi = [{
   name: 'G.1',
   stan: '1',
-  stanje: 'slobodan',
+  stanje: 'prodat',
   kvadrature: [
     { name: 'GARAZA', size: 16.04 },
   ]
@@ -15,7 +15,7 @@ export const stanovi = [{
 }, {
   name: 'G.4',
   stan: '4',
-  stanje: 'slobodan',
+  stanje: 'prodat',
   kvadrature: [
     { name: 'GARAZA', size: 15.99 },
   ]
@@ -29,7 +29,7 @@ export const stanovi = [{
 }, {
   name: 'G.6',
   stan: '6',
-  stanje: 'slobodan',
+  stanje: 'prodat',
   kvadrature: [
     { name: 'GARAZA', size: 13.94 },
   ]
@@ -57,7 +57,7 @@ export const stanovi = [{
 }, {
   name: 'G.10',
   stan: '10',
-  stanje: 'slobodan',
+  stanje: 'prodat',
   kvadrature: [
     { name: 'GARAZA', size: 14.42 },
   ]

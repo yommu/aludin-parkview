@@ -31,15 +31,13 @@ export const WINDOW = new InjectionToken<Window>('WindowToken', {
           <h1>Ciglana Park View
             <p style="font-size: 1.2rem; font-weight: 100; letter-spacing: 0.2rem; margin-top: 8px; font-family: 'Roboto Flex';">Slavinovici, Tuzla</p>
           </h1>
-          <h2 class="phone">
-            <a href="tel:+38735316900">+387 35 316 900</a>
-          </h2>
         </div>
       </div>
       <div class="header__title">
         <img src="assets/header-zgrada.png" alt="zgrada" />
       </div>
     </div>
+    <div class="banner"></div>
   </div>
 
   <menu>
@@ -60,6 +58,11 @@ export const WINDOW = new InjectionToken<Window>('WindowToken', {
         routerLinkActive="active">Lokacija</a>
     </div>
   </menu>
+  <div class="banner-horizontal">
+    Projekt se bliži završetku, a svi stanovi su već rasprodani.
+    <br>
+    Uskoro novi projekat.
+  </div>
   `,
   standalone: true,
   styleUrls: ['./header.component.scss'],
